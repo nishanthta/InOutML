@@ -104,7 +104,9 @@ for pred in preds:
 
 results = [(x, y, z) for (x, y), z in zip(test_sentence_pairs, scores)]
 results.sort(key=itemgetter(2), reverse=True)
-idx = 0
+idx1,idx2 = 0,0
 for i in range(len(data)):
 	if summaries[i] == results[0][1]:
-		idx = i
+		idx1 = i
+	elif summaries[i] == results[1][1]:
+		idx2 = i
