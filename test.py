@@ -14,6 +14,8 @@ parser.add_argument('--desc', '-ds', default = '')
 parser.add_argument('--identity', '-id', default = '0') #0 for app, 1 for ad
 args = parser.parse_args()
 
+data,summaries = [],[]
+
 if int(args.identity) == 0:
 	with open('./ads.json') as f:
 		data = json.load(f)
@@ -102,4 +104,7 @@ for pred in preds:
 
 results = [(x, y, z) for (x, y), z in zip(test_sentence_pairs, scores)]
 results.sort(key=itemgetter(2), reverse=True)
-print(results)
+idx = 0
+for i in range(len(data)):
+	if summaries[i] == results[0][1]:
+		idx = i
